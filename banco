@@ -1,0 +1,52 @@
+
+```sql
+CREATE TABLE Produto (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    preco DECIMAL(10, 2) NOT NULL,
+    quantidade INT NOT NULL
+);
+
+CREATE TABLE Cliente (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    cpf_cnpj VARCHAR(14) UNIQUE NOT NULL,
+    telefone VARCHAR(15),
+    endereco VARCHAR(255)
+);
+
+CREATE TABLE Venda (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    id_cliente INT NOT NULL,
+    data DATE NOT NULL,
+    valor_total DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (id_cliente) REFERENCES Cliente(id)
+);
+
+CREATE TABLE Itens_Venda (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    id_venda INT NOT NULL,
+    id_produto INT NOT NULL,
+    quantidade INT NOT NULL,
+    valor_unitario DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (id_venda) REFERENCES Venda(id),
+    FOREIGN KEY (id_produto) REFERENCES Produto(id)
+);
+
+CREATE TABLE Funcionario (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    cargo VARCHAR(50) NOT NULL,
+    salario DECIMAL(10, 2) NOT NULL
+);
+
+CREATE TABLE Pagamento (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    id_venda INT NOT NULL,
+    metodo_pagamento VARCHAR(50) NOT NULL,
+    status VARCHAR(20) NOT NULL,
+    valor DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (id_venda) REFERENCES Venda(id)
+);
+```
+
