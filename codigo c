@@ -1,0 +1,156 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_PRODUTOS 100
+#define MAX_CLIENTES 100
+#define MAX_FUNCIONARIOS 50
+
+// Estruturas de Dados
+typedef struct {
+    int id;
+    char nome[50];
+    float preco;
+    int estoque;
+} Produto;
+
+typedef struct {
+    int id;
+    char nome[50];
+    char email[50];
+} Cliente;
+
+typedef struct {
+    int id;
+    char nome[50];
+    char cargo[50];
+} Funcionario;
+
+// Base de Dados
+Produto produtos[MAX_PRODUTOS];
+Cliente clientes[MAX_CLIENTES];
+Funcionario funcionarios[MAX_FUNCIONARIOS];
+int totalProdutos = 0;
+int totalClientes = 0;
+int totalFuncionarios = 0;
+
+// Funções de Cadastro
+void cadastrarProduto() {
+    if (totalProdutos >= MAX_PRODUTOS) {
+        printf("\nLimite de produtos atingido.\n");
+        return;
+    }
+    Produto novoProduto;
+    novoProduto.id = totalProdutos + 1;
+    printf("\nDigite o nome do produto: ");
+    scanf(" %[^"]s", novoProduto.nome);
+    printf("Digite o preço do produto: ");
+    scanf("%f", &novoProduto.preco);
+    printf("Digite a quantidade em estoque: ");
+    scanf("%d", &novoProduto.estoque);
+    produtos[totalProdutos++] = novoProduto;
+    printf("\nProduto cadastrado com sucesso!\n");
+}
+
+void cadastrarCliente() {
+    if (totalClientes >= MAX_CLIENTES) {
+        printf("\nLimite de clientes atingido.\n");
+        return;
+    }
+    Cliente novoCliente;
+    novoCliente.id = totalClientes + 1;
+    printf("\nDigite o nome do cliente: ");
+    scanf(" %[^"]s", novoCliente.nome);
+    printf("Digite o email do cliente: ");
+    scanf(" %[^"]s", novoCliente.email);
+    clientes[totalClientes++] = novoCliente;
+    printf("\nCliente cadastrado com sucesso!\n");
+}
+
+void cadastrarFuncionario() {
+    if (totalFuncionarios >= MAX_FUNCIONARIOS) {
+        printf("\nLimite de funcionários atingido.\n");
+        return;
+    }
+    Funcionario novoFuncionario;
+    novoFuncionario.id = totalFuncionarios + 1;
+    printf("\nDigite o nome do funcionário: ");
+    scanf(" %[^"]s", novoFuncionario.nome);
+    printf("Digite o cargo do funcionário: ");
+    scanf(" %[^"]s", novoFuncionario.cargo);
+    funcionarios[totalFuncionarios++] = novoFuncionario;
+    printf("\nFuncionário cadastrado com sucesso!\n");
+}
+
+// Funções de Relatório
+void listarProdutos() {
+    printf("\n--- Lista de Produtos ---\n");
+    for (int i = 0; i < totalProdutos; i++) {
+        printf("ID: %d, Nome: %s, Preço: %.2f, Estoque: %d\n",
+               produtos[i].id, produtos[i].nome, produtos[i].preco, produtos[i].estoque);
+    }
+}
+
+void listarClientes() {
+    printf("\n--- Lista de Clientes ---\n");
+    for (int i = 0; i < totalClientes; i++) {
+        printf("ID: %d, Nome: %s, Email: %s\n",
+               clientes[i].id, clientes[i].nome, clientes[i].email);
+    }
+}
+
+void listarFuncionarios() {
+    printf("\n--- Lista de Funcionários ---\n");
+    for (int i = 0; i < totalFuncionarios; i++) {
+        printf("ID: %d, Nome: %s, Cargo: %s\n",
+               funcionarios[i].id, funcionarios[i].nome, funcionarios[i].cargo);
+    }
+}
+
+// Menu Principal
+void menu() {
+    int opcao;
+    do {
+        printf("\n--- Sistema de Gerenciamento ---\n");
+        printf("1. Cadastrar Produto\n");
+        printf("2. Cadastrar Cliente\n");
+        printf("3. Cadastrar Funcionário\n");
+        printf("4. Listar Produtos\n");
+        printf("5. Listar Clientes\n");
+        printf("6. Listar Funcionários\n");
+        printf("0. Sair\n");
+        printf("Escolha uma opção: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1:
+                cadastrarProduto();
+                break;
+            case 2:
+                cadastrarCliente();
+                break;
+            case 3:
+                cadastrarFuncionario();
+                break;
+            case 4:
+                listarProdutos();
+                break;
+            case 5:
+                listarClientes();
+                break;
+            case 6:
+                listarFuncionarios();
+                break;
+            case 0:
+                printf("\nEncerrando o sistema.\n");
+                break;
+            default:
+                printf("\nOpção inválida. Tente novamente.\n");
+        }
+    } while (opcao != 0);
+}
+
+int main() {
+    menu();
+    return 0;
+}
