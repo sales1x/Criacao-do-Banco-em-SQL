@@ -1,6 +1,11 @@
-### **Modelagem (DER)**
+Descrição da Modelagem
+1. Produto: Contém informações sobre os produtos disponíveis.
+2. Cliente: Guarda os dados de clientes cadastrados no sistema.
+3. Venda: Registra as transações realizadas, associando-as a um cliente.
+4. Itens_Venda: Representa os produtos incluídos em cada venda.
+5. Funcionário: Informações sobre os colaboradores que utilizam o sistema.
+6. Pagamento: Detalha os métodos de pagamento utilizados e status das transações.
 
-```plaintext
 +-------------+       +-------------+       +-----------+
 |   Produto   |       |   Cliente   |       |   Venda   |
 +-------------+       +-------------+       +-----------+
