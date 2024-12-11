@@ -1,0 +1,32 @@
+### **Modelagem (DER)**
+
+```plaintext
++-------------+       +-------------+       +-----------+
+|   Produto   |       |   Cliente   |       |   Venda   |
++-------------+       +-------------+       +-----------+
+| id          |<----->| id          |<----->| id        |
+| nome        |       | nome        |       | id_cliente|
+| preço       |       | CPF/CNPJ    |       | data      |
+| quantidade  |       | telefone    |       | valor_total|
++-------------+       | endereço    |       +-----------+
+                     +-------------+
+
++-------------+       +---------------+
+| Itens_Venda |       |   Funcionário |
++-------------+       +---------------+
+| id          |       | id            |
+| id_venda    |       | nome          |
+| id_produto  |       | cargo         |
+| quantidade  |       | salario       |
+| valor_unitário|    +---------------+
++-------------+
+
++-----------------+
+|     Pagamento   |
++-----------------+
+| id              |
+| id_venda        |
+| metodo_pagamento|
+| status          |
+| valor           |
++-----------------+
